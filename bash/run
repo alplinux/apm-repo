@@ -1,0 +1,14 @@
+#!/bin/sh
+NAME="bash"
+VERSION="5.1.16"
+DESCRIPTION="The GNU bash shell"
+
+build() {
+	wget -q --show-progress https://ftp.gnu.org/gnu/bash/bash-5.1.16.tar.gz
+	tar -xvf bash-$VERSION.tar.gz
+	cd bash-$VERSION || exit 1
+	./configure --prefix=/usr
+
+	make
+	make DESTDIR=$ROOT install
+}
